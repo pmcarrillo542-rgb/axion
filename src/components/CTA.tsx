@@ -8,7 +8,7 @@ export default function CTA() {
         <div className="w-[900px] h-[900px] bg-cyan-500/10 rounded-full blur-[220px]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-[1500px] mx-auto px-6">
 
         <div
           className="
@@ -23,7 +23,7 @@ export default function CTA() {
           "
         >
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
 
             {/* Texto */}
             <div>
@@ -40,7 +40,7 @@ export default function CTA() {
                 tu empresa?
               </h2>
 
-              <p className="mt-8 text-gray-400 text-lg leading-relaxed">
+              <p className="mt-8 text-gray-400 text-lg leading-relaxed max-w-xl">
                 Agenda una llamada estratégica gratuita y descubre cómo reducir
                 costos, ahorrar tiempo y escalar operaciones mediante
                 automatización, inteligencia artificial, Odoo e integraciones.
@@ -76,12 +76,17 @@ export default function CTA() {
                 border-white/10
                 rounded-3xl
                 p-8
+                backdrop-blur-xl
               "
             >
 
-              <h3 className="text-2xl font-semibold mb-6">
-                Solicita una consultoría gratuita
+              <h3 className="text-2xl font-semibold mb-2">
+                Solicita una auditoría gratuita
               </h3>
+
+              <p className="text-gray-400 mb-8">
+                Completa el formulario y te contactaremos en menos de 24 horas.
+              </p>
 
               <form className="space-y-5">
 
@@ -97,7 +102,10 @@ export default function CTA() {
                     border
                     border-white/10
                     outline-none
+                    transition-all
+                    duration-300
                     focus:border-cyan-400
+                    focus:bg-white/[0.08]
                   "
                 />
 
@@ -113,7 +121,10 @@ export default function CTA() {
                     border
                     border-white/10
                     outline-none
+                    transition-all
+                    duration-300
                     focus:border-cyan-400
+                    focus:bg-white/[0.08]
                   "
                 />
 
@@ -129,13 +140,16 @@ export default function CTA() {
                     border
                     border-white/10
                     outline-none
+                    transition-all
+                    duration-300
                     focus:border-cyan-400
+                    focus:bg-white/[0.08]
                   "
                 />
 
                 <textarea
                   rows={5}
-                  placeholder="Cuéntanos qué proceso deseas automatizar..."
+                  placeholder="¿Qué proceso deseas automatizar?"
                   className="
                     w-full
                     px-5
@@ -145,7 +159,10 @@ export default function CTA() {
                     border
                     border-white/10
                     outline-none
+                    transition-all
+                    duration-300
                     focus:border-cyan-400
+                    focus:bg-white/[0.08]
                     resize-none
                   "
                 />
@@ -166,10 +183,14 @@ export default function CTA() {
                     shadow-[0_0_40px_rgba(34,211,238,0.4)]
                   "
                 >
-                  Solicitar consultoría
+                  🚀 Solicitar diagnóstico gratuito
                 </button>
 
               </form>
+
+              <div className="mt-6 text-center text-xs text-gray-500">
+                Sin compromiso • Respuesta en menos de 24 horas
+              </div>
 
             </div>
 
