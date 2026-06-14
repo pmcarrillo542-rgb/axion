@@ -1,40 +1,6 @@
 "use client";
 
 export default function CTA() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const nombre = (
-      document.getElementById("nombre") as HTMLInputElement
-    ).value;
-
-    const empresa = (
-      document.getElementById("empresa") as HTMLInputElement
-    ).value;
-
-    const correo = (
-      document.getElementById("correo") as HTMLInputElement
-    ).value;
-
-    const mensaje = (
-      document.getElementById("mensaje") as HTMLTextAreaElement
-    ).value;
-
-    const texto = `Hola AXION.
-
-Nombre: ${nombre}
-Empresa: ${empresa}
-Correo: ${correo}
-
-Necesito ayuda con:
-${mensaje}`;
-
-    window.open(
-      `https://wa.me/593987103931?text=${encodeURIComponent(texto)}`,
-      "_blank"
-    );
-  };
-
   return (
     <section
       id="contact"
@@ -114,9 +80,14 @@ ${mensaje}`;
                 Completa el formulario y te contactaremos en menos de 24 horas.
               </p>
 
-              <form className="space-y-5" onSubmit={handleSubmit}>
+              <form
+                action="https://formspree.io/f/xgobrdbw"
+                method="POST"
+                className="space-y-5"
+              >
                 <input
                   id="nombre"
+                  name="Nombre"
                   type="text"
                   placeholder="Nombre completo"
                   required
@@ -125,6 +96,7 @@ ${mensaje}`;
 
                 <input
                   id="empresa"
+                  name="Empresa"
                   type="text"
                   placeholder="Empresa"
                   className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 outline-none"
@@ -132,6 +104,7 @@ ${mensaje}`;
 
                 <input
                   id="correo"
+                  name="email"
                   type="email"
                   placeholder="Correo electrónico"
                   required
@@ -140,6 +113,7 @@ ${mensaje}`;
 
                 <textarea
                   id="mensaje"
+                  name="Mensaje"
                   rows={5}
                   placeholder="¿Qué proceso deseas automatizar?"
                   required
