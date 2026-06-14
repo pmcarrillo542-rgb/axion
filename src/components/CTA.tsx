@@ -1,4 +1,40 @@
+"use client";
+
 export default function CTA() {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const nombre = (
+      document.getElementById("nombre") as HTMLInputElement
+    ).value;
+
+    const empresa = (
+      document.getElementById("empresa") as HTMLInputElement
+    ).value;
+
+    const correo = (
+      document.getElementById("correo") as HTMLInputElement
+    ).value;
+
+    const mensaje = (
+      document.getElementById("mensaje") as HTMLTextAreaElement
+    ).value;
+
+    const texto = `Hola AXION.
+
+Nombre: ${nombre}
+Empresa: ${empresa}
+Correo: ${correo}
+
+Necesito ayuda con:
+${mensaje}`;
+
+    window.open(
+      `https://wa.me/593987103931?text=${encodeURIComponent(texto)}`,
+      "_blank"
+    );
+  };
+
   return (
     <section
       id="contact"
@@ -9,7 +45,6 @@ export default function CTA() {
       </div>
 
       <div className="relative max-w-[1500px] mx-auto px-6">
-
         <div
           className="
             border
@@ -22,12 +57,8 @@ export default function CTA() {
             shadow-[0_0_80px_rgba(34,211,238,0.08)]
           "
         >
-
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
-
-            {/* Texto */}
             <div>
-
               <span className="text-cyan-400 uppercase tracking-[0.35em] text-sm">
                 COMIENZA HOY
               </span>
@@ -47,7 +78,6 @@ export default function CTA() {
               </p>
 
               <div className="mt-10 flex flex-wrap gap-3">
-
                 <span className="px-4 py-2 rounded-full border border-cyan-400/20 text-cyan-300 text-sm">
                   IA
                 </span>
@@ -63,12 +93,9 @@ export default function CTA() {
                 <span className="px-4 py-2 rounded-full border border-cyan-400/20 text-cyan-300 text-sm">
                   Integraciones
                 </span>
-
               </div>
-
             </div>
 
-            {/* Formulario */}
             <div
               className="
                 bg-black/40
@@ -79,7 +106,6 @@ export default function CTA() {
                 backdrop-blur-xl
               "
             >
-
               <h3 className="text-2xl font-semibold mb-2">
                 Solicita una auditoría gratuita
               </h3>
@@ -88,87 +114,40 @@ export default function CTA() {
                 Completa el formulario y te contactaremos en menos de 24 horas.
               </p>
 
-              <form className="space-y-5">
-
+              <form className="space-y-5" onSubmit={handleSubmit}>
                 <input
+                  id="nombre"
                   type="text"
                   placeholder="Nombre completo"
-                  className="
-                    w-full
-                    px-5
-                    py-4
-                    rounded-xl
-                    bg-white/5
-                    border
-                    border-white/10
-                    outline-none
-                    transition-all
-                    duration-300
-                    focus:border-cyan-400
-                    focus:bg-white/[0.08]
-                  "
+                  required
+                  className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 outline-none"
                 />
 
                 <input
+                  id="empresa"
                   type="text"
                   placeholder="Empresa"
-                  className="
-                    w-full
-                    px-5
-                    py-4
-                    rounded-xl
-                    bg-white/5
-                    border
-                    border-white/10
-                    outline-none
-                    transition-all
-                    duration-300
-                    focus:border-cyan-400
-                    focus:bg-white/[0.08]
-                  "
+                  className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 outline-none"
                 />
 
                 <input
+                  id="correo"
                   type="email"
                   placeholder="Correo electrónico"
-                  className="
-                    w-full
-                    px-5
-                    py-4
-                    rounded-xl
-                    bg-white/5
-                    border
-                    border-white/10
-                    outline-none
-                    transition-all
-                    duration-300
-                    focus:border-cyan-400
-                    focus:bg-white/[0.08]
-                  "
+                  required
+                  className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 outline-none"
                 />
 
                 <textarea
+                  id="mensaje"
                   rows={5}
                   placeholder="¿Qué proceso deseas automatizar?"
-                  className="
-                    w-full
-                    px-5
-                    py-4
-                    rounded-xl
-                    bg-white/5
-                    border
-                    border-white/10
-                    outline-none
-                    transition-all
-                    duration-300
-                    focus:border-cyan-400
-                    focus:bg-white/[0.08]
-                    resize-none
-                  "
+                  required
+                  className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/10 outline-none resize-none"
                 />
 
                 <button
-                  type="button"
+                  type="submit"
                   className="
                     w-full
                     py-4
@@ -177,27 +156,19 @@ export default function CTA() {
                     text-black
                     font-semibold
                     hover:bg-cyan-300
-                    hover:scale-[1.02]
                     transition-all
-                    duration-300
-                    shadow-[0_0_40px_rgba(34,211,238,0.4)]
                   "
                 >
                   🚀 Solicitar diagnóstico gratuito
                 </button>
-
               </form>
 
               <div className="mt-6 text-center text-xs text-gray-500">
                 Sin compromiso • Respuesta en menos de 24 horas
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

@@ -5,36 +5,34 @@ import { motion } from "framer-motion";
 export default function Showcase() {
   const projects = [
     {
-      title: "Automatización Comercial",
-      result: "-70%",
-      metric: "Tiempo Operativo",
+      title: "Automatización de Ventas",
+      result: "-72%",
+      metric: "Tiempo Administrativo",
       description:
-        "Automatizamos seguimiento de leads, correos y gestión comercial para acelerar ventas.",
+        "Automatizamos el seguimiento de leads, cotizaciones y tareas comerciales mediante IA y flujos inteligentes.",
     },
     {
-      title: "Integración ERP + CRM",
-      result: "+35%",
+      title: "Implementación Odoo ERP",
+      result: "+43%",
       metric: "Productividad",
       description:
-        "Conectamos sistemas críticos eliminando tareas manuales y errores de información.",
+        "Centralizamos ventas, inventario, compras y finanzas en una única plataforma conectada en tiempo real.",
     },
     {
-      title: "Dashboard Ejecutivo",
+      title: "Dashboard Gerencial IA",
       result: "24/7",
-      metric: "Visibilidad",
+      metric: "Control Operativo",
       description:
-        "Centralizamos indicadores estratégicos para una toma de decisiones más rápida.",
+        "Creamos paneles ejecutivos con indicadores clave para monitorear el negocio desde cualquier dispositivo.",
     },
   ];
 
   return (
     <section
-  id="showcase"
-  className="relative py-32 text-white overflow-hidden"
->
-
+      id="showcase"
+      className="relative py-32 text-white overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-6">
-
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -42,26 +40,24 @@ export default function Showcase() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-
           <span className="text-cyan-400 uppercase tracking-[0.35em] text-sm">
-            Casos de éxito
+            Soluciones implementadas
           </span>
 
           <h2 className="mt-6 text-5xl md:text-7xl font-bold leading-tight">
-            Resultados que
+            Transformamos procesos
             <br />
-            hablan por sí solos
+            en resultados
           </h2>
 
           <p className="mt-6 text-gray-400 text-lg max-w-3xl mx-auto">
-            Soluciones implementadas para empresas que necesitaban crecer,
-            automatizar y operar con mayor eficiencia.
+            Ayudamos a las empresas a reducir costos, eliminar tareas manuales
+            y escalar operaciones mediante automatización e inteligencia
+            artificial.
           </p>
-
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
-
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -90,7 +86,6 @@ export default function Showcase() {
                 duration-500
               "
             >
-
               <div
                 className="
                   absolute
@@ -121,7 +116,7 @@ export default function Showcase() {
                   mb-8
                 "
               >
-                Caso de éxito
+                Proyecto destacado
               </span>
 
               <h3 className="text-3xl font-semibold mb-8">
@@ -129,7 +124,6 @@ export default function Showcase() {
               </h3>
 
               <div className="mb-8">
-
                 <div
                   className="
                     text-7xl
@@ -144,20 +138,15 @@ export default function Showcase() {
                 <div className="mt-3 text-gray-500 uppercase tracking-[0.2em] text-sm">
                   {project.metric}
                 </div>
-
               </div>
 
               <p className="text-gray-400 leading-relaxed">
                 {project.description}
               </p>
-
             </motion.div>
           ))}
-
         </div>
-
       </div>
-
     </section>
   );
 }
