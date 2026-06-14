@@ -133,7 +133,7 @@ export default function CTA() {
                     transition-all
                   "
                 >
-                  🚀 Solicitar diagnóstico gratuito
+                   Solicitar diagnóstico gratuito
                 </button>
               </form>
 
