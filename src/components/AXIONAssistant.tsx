@@ -512,15 +512,18 @@ const interval = setInterval(() => {
               </button>
 
               <button
-                onClick={() =>
-                  sendQuickQuestion(" auditoria")
-                }
-                className="text-[11px] px-2 py-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white border border-cyan-400 shadow-lg"
-              >
-                Auditoría
-              </button>
-              <button
-  onClick={goToContact}
+              onClick={() => {
+  setMessages((prev) => [
+    ...prev,
+    {
+      role: "assistant",
+      content:
+        "Perfecto. Para comenzar necesito algunos datos.\n\n¿Como te llamas?",
+    },
+  ]);
+
+  setLeadStep(1);
+}}
   className="text-[11px] px-2 py-1 rounded-full bg-green-500 text-white border border-green-400"
 >
   Agendar llamada
