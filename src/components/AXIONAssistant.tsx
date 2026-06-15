@@ -75,16 +75,7 @@ useEffect(() => {
   }
 
   
-    if (
-  lower.includes("auditoria") ||
-  lower.includes("agendar") ||
-  lower.includes("llamada") ||
-  lower.includes("demo")
-) {
-  setLeadStep(1);
-
-  return "Perfecto. Para comenzar necesito algunos datos.\n\n¿Como te llamas?";
-}
+   
    
   if (
     lower.includes("precio") ||
@@ -267,6 +258,30 @@ const interval = setInterval(() => {
   if (!input.trim()) return;
 
   const currentInput = input;
+  if (
+  currentInput.toLowerCase().includes("auditoria") ||
+  currentInput.toLowerCase().includes("agendar") ||
+  currentInput.toLowerCase().includes("llamada") ||
+  currentInput.toLowerCase().includes("demo")
+) {
+  setMessages((prev) => [
+    ...prev,
+    {
+      role: "user",
+      content: currentInput,
+    },
+    {
+      role: "assistant",
+      content:
+        "Perfecto. Para comenzar necesito algunos datos.\n\n¿Como te llamas?",
+    },
+  ]);
+
+  setInput("");
+  setLeadStep(1);
+
+  return;
+}
   if (leadStep === 1) {
   setLeadData((prev) => ({
     ...prev,
