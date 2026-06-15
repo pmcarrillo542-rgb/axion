@@ -9,13 +9,30 @@ export default function AXIONAssistant() {
   {
     role: "assistant",
     content:
-      "Hola 👋\n\nSoy EVA AI, la asistente virtual de AXION.\n\nPuedo ayudarte con:\n\n• Odoo ERP\n• Automatizacion de procesos\n• Inteligencia Artificial\n• CRM y Ventas\n• Integraciones empresariales\n\nTambien puedes preguntarme sobre:\n\n• Precios\n• WhatsApp\n• Facturacion\n• Inventario\n• Compras\n• Dashboards\n• Integraciones\n\n¿Sobre que tema te gustaria conversar?",
+      "Hola 👋\n\nSoy EVA AI, la asistente virtual de AXION.\n\nPuedo ayudarte con:\n\n• Odoo ERP\n• Automatizacion de procesos\n• Inteligencia Artificial\n• CRM y Ventas\n• Integraciones empresariales\n\nTambien puedes preguntarme sobre:\n\n• Precios\n• WhatsApp\n• Facturacion\n• Inventario\n• Compras\n• Dashboards\n• Integraciones\n\n¿Que te gustaria mejorar en tu empresa?\n\n• Ventas\n• Facturacion\n• Inventario\n• Atencion al cliente\n• Automatizacion",
   },
 ]);
 
   const [input, setInput] = useState("");
 const [typing, setTyping] = useState(false);
 const [displayText, setDisplayText] = useState("");
+const goToContact = () => {
+  const section =
+    document.getElementById("contact");
+
+  if (section) {
+    section.scrollIntoView({
+      behavior: "smooth",
+    });
+  }
+};
+const [leadStep, setLeadStep] = useState(0);
+
+const [leadData, setLeadData] = useState({
+  nombre: "",
+  email: "",
+  empresa: "",
+});
 const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
 useEffect(() => {
@@ -151,10 +168,11 @@ if (
   lower.includes("demo") ||
   lower.includes("me interesa") ||
   lower.includes("quiero informacion") ||
-  lower.includes("necesito ayuda") ||
-  lower.includes("cotizacion")
+  lower.includes("necesito ayuda")
 ) {
-  return "Perfecto. Te recomiendo completar la auditoria gratuita. Un especialista de AXION revisara tu caso y se pondra en contacto contigo.";
+  setLeadStep(1);
+
+  return "Perfecto. ¿Cual es tu nombre?";
 }
 if (
   lower.includes("demo") ||
@@ -391,6 +409,12 @@ const interval = setInterval(() => {
               >
                 Auditoría
               </button>
+              <button
+  onClick={goToContact}
+  className="text-[11px] px-2 py-1 rounded-full bg-green-500 text-white border border-green-400"
+>
+  Agendar llamada
+</button>
 
             </div>
           </div>
