@@ -34,6 +34,47 @@ const goToContact = () => {
       behavior: "smooth",
     });
   }
+
+  setTimeout(() => {
+    const nombre =
+      document.getElementById(
+        "nombre"
+      ) as HTMLInputElement;
+
+    const empresa =
+      document.getElementById(
+        "empresa"
+      ) as HTMLInputElement;
+
+    const correo =
+      document.getElementById(
+        "correo"
+      ) as HTMLInputElement;
+
+    const mensaje =
+      document.getElementById(
+        "mensaje"
+      ) as HTMLTextAreaElement;
+
+    if (nombre)
+      nombre.value =
+        leadData.nombre;
+
+    if (empresa)
+      empresa.value =
+        leadData.empresa;
+
+    if (correo)
+      correo.value =
+        leadData.correo;
+
+    if (mensaje)
+      mensaje.value =
+        `Celular: ${leadData.celular}
+
+Proceso:
+${leadData.proceso}`;
+  }, 1200);
 };
 const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -363,10 +404,29 @@ if (leadStep === 4) {
 }
 
 if (leadStep === 5) {
-  setLeadData((prev) => ({
-    ...prev,
-    proceso: currentInput,
-  }));
+  const nombre =
+    document.getElementById("nombre") as HTMLInputElement;
+
+  const empresa =
+    document.getElementById("empresa") as HTMLInputElement;
+
+  const correo =
+    document.getElementById("correo") as HTMLInputElement;
+
+  const mensaje =
+    document.getElementById("mensaje") as HTMLTextAreaElement;
+
+  if (nombre) nombre.value = leadData.nombre;
+  if (empresa) empresa.value = leadData.empresa;
+  if (correo) correo.value = leadData.correo;
+
+  if (mensaje) {
+    mensaje.value =
+`Celular: ${leadData.celular}
+
+Proceso:
+${currentInput}`;
+  }
 
   setMessages((prev) => [
     ...prev,
@@ -374,15 +434,13 @@ if (leadStep === 5) {
     {
       role: "assistant",
       content:
-        "Perfecto. Ya tengo toda la informacion. Bajando al formulario...",
+        "Perfecto. Ya tengo toda la información. He completado el formulario por ti.",
     },
   ]);
 
   setInput("");
 
-  setTimeout(() => {
-    goToContact();
-  }, 1000);
+  goToContact();
 
   setLeadStep(0);
 
