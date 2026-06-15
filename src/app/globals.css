@@ -48,3 +48,24 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(34, 211, 238, 0.6);
 }
+@keyframes evaFloat {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.eva-float {
+  animation: evaFloat 4s ease-in-out infinite;
+}
+
+.eva-float {
+  animation: evaFloat 3s ease-in-out infinite;
+}

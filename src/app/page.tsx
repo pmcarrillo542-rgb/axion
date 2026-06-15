@@ -12,6 +12,7 @@ import WhyAxion from "../components/WhyAxion";
 import CTA from "../components/CTA";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
+import AXIONAssistant from "../components/AXIONAssistant";
 
 export default function Home() {
   return (
@@ -41,6 +42,8 @@ export default function Home() {
       <Footer />
 
       <WhatsAppButton />
+
+      <AXIONAssistant />
     </>
   );
 }
