@@ -16,6 +16,15 @@ export default function AXIONAssistant() {
   const [input, setInput] = useState("");
 const [typing, setTyping] = useState(false);
 const [displayText, setDisplayText] = useState("");
+const [leadStep, setLeadStep] = useState(0);
+
+const [leadData, setLeadData] = useState({
+  nombre: "",
+  empresa: "",
+  correo: "",
+  celular: "",
+  proceso: "",
+});
 const goToContact = () => {
   const section =
     document.getElementById("contact");
@@ -26,13 +35,6 @@ const goToContact = () => {
     });
   }
 };
-const [leadStep, setLeadStep] = useState(0);
-
-const [leadData, setLeadData] = useState({
-  nombre: "",
-  email: "",
-  empresa: "",
-});
 const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
 useEffect(() => {
@@ -78,6 +80,16 @@ useEffect(() => {
     lower.includes("auditoria") ||
     lower.includes("auditoría")
   ) {
+    if (
+  lower.includes("auditoria") ||
+  lower.includes("agendar") ||
+  lower.includes("llamada") ||
+  lower.includes("demo")
+) {
+  setLeadStep(1);
+
+  return "Perfecto. Para comenzar necesito algunos datos.\n\n¿Como te llamas?";
+}
     return "Excelente. Puedes solicitar una auditoría gratuita completando el formulario de contacto de AXION.";
   }
 
@@ -278,6 +290,112 @@ const interval = setInterval(() => {
   if (!input.trim()) return;
 
   const currentInput = input;
+  if (leadStep === 1) {
+  setLeadData((prev) => ({
+    ...prev,
+    nombre: currentInput,
+  }));
+
+  setMessages((prev) => [
+    ...prev,
+    { role: "user", content: currentInput },
+    {
+      role: "assistant",
+      content: "Perfecto. ¿Como se llama tu empresa?",
+    },
+  ]);
+
+  setInput("");
+  setLeadStep(2);
+  return;
+}
+
+if (leadStep === 2) {
+  setLeadData((prev) => ({
+    ...prev,
+    empresa: currentInput,
+  }));
+
+  setMessages((prev) => [
+    ...prev,
+    { role: "user", content: currentInput },
+    {
+      role: "assistant",
+      content: "Excelente. ¿Cual es tu correo electronico?",
+    },
+  ]);
+
+  setInput("");
+  setLeadStep(3);
+  return;
+}
+
+if (leadStep === 3) {
+  setLeadData((prev) => ({
+    ...prev,
+    correo: currentInput,
+  }));
+
+  setMessages((prev) => [
+    ...prev,
+    { role: "user", content: currentInput },
+    {
+      role: "assistant",
+      content: "Perfecto. ¿Cual es tu numero celular?",
+    },
+  ]);
+
+  setInput("");
+  setLeadStep(4);
+  return;
+}
+
+if (leadStep === 4) {
+  setLeadData((prev) => ({
+    ...prev,
+    celular: currentInput,
+  }));
+
+  setMessages((prev) => [
+    ...prev,
+    { role: "user", content: currentInput },
+    {
+      role: "assistant",
+      content: "¿Que proceso deseas automatizar?",
+    },
+  ]);
+
+  setInput("");
+  setLeadStep(5);
+  return;
+}
+
+if (leadStep === 5) {
+  setLeadData((prev) => ({
+    ...prev,
+    proceso: currentInput,
+  }));
+
+  setMessages((prev) => [
+    ...prev,
+    { role: "user", content: currentInput },
+    {
+      role: "assistant",
+      content:
+        "Perfecto. Ya tengo toda la informacion. Bajando al formulario...",
+    },
+  ]);
+
+  setInput("");
+
+  setTimeout(() => {
+    goToContact();
+  }, 1000);
+
+  setLeadStep(0);
+
+  return;
+}
 
   const userMessage = {
     role: "user",
@@ -403,7 +521,7 @@ const interval = setInterval(() => {
 
               <button
                 onClick={() =>
-                  sendQuickQuestion("Diagnóstico gratuito")
+                  sendQuickQuestion(" auditoria")
                 }
                 className="text-[11px] px-2 py-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white border border-cyan-400 shadow-lg"
               >
