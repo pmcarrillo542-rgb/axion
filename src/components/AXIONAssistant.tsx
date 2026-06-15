@@ -447,8 +447,11 @@ ${procesoActual}`;
     ) as HTMLFormElement;
 
   if (form) {
-    form.requestSubmit();
-  }
+  console.log("FORM ENCONTRADO");
+  form.requestSubmit();
+} else {
+  console.log("FORM NO ENCONTRADO");
+}
 }, 1500);
   }, 300);
 
