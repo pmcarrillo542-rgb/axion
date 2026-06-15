@@ -413,19 +413,6 @@ if (leadStep === 5) {
     proceso: procesoActual,
   }));
 
-  const mensaje =
-    document.getElementById(
-      "mensaje"
-    ) as HTMLTextAreaElement;
-
-  if (mensaje) {
-    mensaje.value =
-`Celular: ${leadData.celular}
-
-Proceso:
-${procesoActual}`;
-  }
-
   setMessages((prev) => [
     ...prev,
     { role: "user", content: currentInput },
@@ -437,23 +424,23 @@ ${procesoActual}`;
   ]);
 
   setInput("");
-console.log("PROCESO:", procesoActual);
- setTimeout(() => {
-  const mensaje =
-    document.getElementById(
-      "mensaje"
-    ) as HTMLTextAreaElement;
 
-  if (mensaje) {
-    mensaje.value =
+  setTimeout(() => {
+    const mensaje =
+      document.getElementById(
+        "mensaje"
+      ) as HTMLTextAreaElement;
+
+    if (mensaje) {
+      mensaje.value =
 `Celular: ${leadData.celular}
 
 Proceso:
 ${procesoActual}`;
-  }
+    }
 
-  goToContact();
-}, 500);
+    goToContact();
+  }, 300);
 
   setLeadStep(0);
 
