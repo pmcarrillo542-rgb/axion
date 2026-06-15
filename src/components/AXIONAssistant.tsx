@@ -25,7 +25,7 @@ const [leadData, setLeadData] = useState({
   celular: "",
   proceso: "",
 });
-const goToContact = () => {
+const goToContact = (proceso = "") => {
   const section =
     document.getElementById("contact");
 
@@ -73,7 +73,7 @@ if (mensaje) {
 `Celular: ${leadData.celular}
 
 Proceso:
-${leadData.proceso}`;
+${proceso}`;
 }
 
 }, 1200);
@@ -439,7 +439,7 @@ Proceso:
 ${procesoActual}`;
     }
 
-    goToContact();
+    goToContact(procesoActual);
   }, 300);
 
   setLeadStep(0);
