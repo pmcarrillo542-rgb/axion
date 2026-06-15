@@ -68,13 +68,15 @@ const goToContact = () => {
       correo.value =
         leadData.correo;
 
-    if (mensaje)
-      mensaje.value =
-        `Celular: ${leadData.celular}
+   if (mensaje) {
+  mensaje.value =
+`Celular: ${leadData.celular}
 
 Proceso:
 ${leadData.proceso}`;
-  }, 1200);
+}
+
+}, 1200);
 };
 const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -404,28 +406,24 @@ if (leadStep === 4) {
 }
 
 if (leadStep === 5) {
-  const nombre =
-    document.getElementById("nombre") as HTMLInputElement;
+  const procesoActual = currentInput;
 
-  const empresa =
-    document.getElementById("empresa") as HTMLInputElement;
-
-  const correo =
-    document.getElementById("correo") as HTMLInputElement;
+  setLeadData((prev) => ({
+    ...prev,
+    proceso: procesoActual,
+  }));
 
   const mensaje =
-    document.getElementById("mensaje") as HTMLTextAreaElement;
-
-  if (nombre) nombre.value = leadData.nombre;
-  if (empresa) empresa.value = leadData.empresa;
-  if (correo) correo.value = leadData.correo;
+    document.getElementById(
+      "mensaje"
+    ) as HTMLTextAreaElement;
 
   if (mensaje) {
     mensaje.value =
 `Celular: ${leadData.celular}
 
 Proceso:
-${currentInput}`;
+${procesoActual}`;
   }
 
   setMessages((prev) => [
@@ -434,7 +432,7 @@ ${currentInput}`;
     {
       role: "assistant",
       content:
-        "Perfecto. Ya tengo toda la información. He completado el formulario por ti.",
+        "Perfecto. Ya tengo toda la informacion. He completado el formulario por ti.",
     },
   ]);
 
