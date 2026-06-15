@@ -68,7 +68,7 @@ const goToContact = () => {
       correo.value =
         leadData.correo;
 
-   if (mensaje) {
+if (mensaje) {
   mensaje.value =
 `Celular: ${leadData.celular}
 
