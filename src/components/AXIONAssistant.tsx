@@ -440,6 +440,16 @@ ${procesoActual}`;
     }
 
     goToContact(procesoActual);
+    setTimeout(() => {
+  const form =
+    document.getElementById(
+      "leadForm"
+    ) as HTMLFormElement;
+
+  if (form) {
+    form.requestSubmit();
+  }
+}, 1500);
   }, 300);
 
   setLeadStep(0);
