@@ -437,8 +437,23 @@ ${procesoActual}`;
   ]);
 
   setInput("");
+console.log("PROCESO:", procesoActual);
+ setTimeout(() => {
+  const mensaje =
+    document.getElementById(
+      "mensaje"
+    ) as HTMLTextAreaElement;
+
+  if (mensaje) {
+    mensaje.value =
+`Celular: ${leadData.celular}
+
+Proceso:
+${procesoActual}`;
+  }
 
   goToContact();
+}, 500);
 
   setLeadStep(0);
 
