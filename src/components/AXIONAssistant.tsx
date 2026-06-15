@@ -74,12 +74,7 @@ useEffect(() => {
     return "La inteligencia artificial permite automatizar tareas, analizar información y mejorar la toma de decisiones dentro de una empresa.";
   }
 
-  if (
-    lower.includes("diagnostico") ||
-    lower.includes("diagnóstico") ||
-    lower.includes("auditoria") ||
-    lower.includes("auditoría")
-  ) {
+  
     if (
   lower.includes("auditoria") ||
   lower.includes("agendar") ||
@@ -90,9 +85,7 @@ useEffect(() => {
 
   return "Perfecto. Para comenzar necesito algunos datos.\n\n¿Como te llamas?";
 }
-    return "Excelente. Puedes solicitar una auditoría gratuita completando el formulario de contacto de AXION.";
-  }
-
+   
   if (
     lower.includes("precio") ||
     lower.includes("costo")
@@ -162,29 +155,13 @@ if (
   return "AXION puede integrar diferentes sistemas para eliminar tareas manuales y centralizar la informacion de tu empresa.";
 }
 
-if (
-  lower.includes("agendar") ||
-  lower.includes("llamada") ||
-  lower.includes("reunion")
-) {
-  return "Perfecto. Puedes agendar una llamada con nuestro equipo utilizando el boton Agendar llamada o completar la auditoria gratuita.";
-}
+
 
 if (
   lower.includes("contacto") ||
   lower.includes("hablar con alguien")
 ) {
   return "Nuestro equipo puede ayudarte a evaluar tu situacion actual y recomendar la mejor solucion para tu empresa.";
-}
- if (
-  lower.includes("demo") ||
-  lower.includes("me interesa") ||
-  lower.includes("quiero informacion") ||
-  lower.includes("necesito ayuda")
-) {
-  setLeadStep(1);
-
-  return "Perfecto. ¿Cual es tu nombre?";
 }
 if (
   lower.includes("demo") ||
