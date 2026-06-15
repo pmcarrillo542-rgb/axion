@@ -395,33 +395,36 @@ const interval = setInterval(() => {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-3 space-y-2">
-            {messages.map((msg, i) => (
-            
-              <div
-                key={i}
-                className={`p-2 rounded-xl text-sm whitespace-pre-line ${
-                  msg.role === "user"
-                    ? "bg-cyan-600 text-white ml-8"
-                    : "bg-slate-800 text-slate-200 mr-8"
-                }`}
-              >
-                {msg.content}
-                <div ref={messagesEndRef} />
-              </div>
-              
-            ))}
-            {typing && (
+         <div className="flex-1 overflow-y-auto p-3 space-y-2">
+
+  {messages.map((msg, i) => (
+    <div
+      key={i}
+      className={`p-2 rounded-xl text-sm whitespace-pre-line ${
+        msg.role === "user"
+          ? "bg-cyan-600 text-white ml-8"
+          : "bg-slate-800 text-slate-200 mr-8"
+      }`}
+    >
+      {msg.content}
+    </div>
+  ))}
+
+  {typing && (
     <div className="bg-slate-800 text-slate-300 mr-8 p-2 rounded-xl text-sm">
       ● EVA esta escribiendo...
-      {displayText && (
-  <div className="bg-slate-800 text-slate-200 mr-8 p-2 rounded-xl text-sm whitespace-pre-line">
-    {displayText}
-  </div>
-)}
     </div>
   )}
-          </div>
+
+  {displayText && (
+    <div className="bg-slate-800 text-slate-200 mr-8 p-2 rounded-xl text-sm whitespace-pre-line">
+      {displayText}
+    </div>
+  )}
+
+  <div ref={messagesEndRef} />
+
+</div>
 
           <div className="p-2 border-t border-cyan-900 flex gap-2">
             <input
