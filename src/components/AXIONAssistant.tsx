@@ -250,10 +250,7 @@ const interval = setInterval(() => {
   }
 }, 15);
 
-    setMessages((prev) => [
-      ...prev,
-      botMessage,
-    ]);
+   
 
     setTyping(false);
   }, 1500);
