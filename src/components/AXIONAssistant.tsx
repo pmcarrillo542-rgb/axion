@@ -9,7 +9,7 @@ export default function AXIONAssistant() {
   {
     role: "assistant",
     content:
-      "Hola 👋\n\nSoy EVA AI, la asistente virtual de AXION.\n\nPuedo ayudarte con:\n\n• Odoo ERP\n• Automatizacion de procesos\n• Inteligencia Artificial\n• CRM y Ventas\n• Integraciones empresariales\n\nTambien puedes preguntarme sobre:\n\n• Precios\n• WhatsApp\n• Facturacion\n• Inventario\n• Compras\n• Dashboards\n• Integraciones\n\n¿Que te gustaria mejorar en tu empresa?\n\n• Ventas\n• Facturacion\n• Inventario\n• Atencion al cliente\n• Automatizacion",
+       "Hola.\n\nSoy EVA AI, la asistente virtual de AXION.\n\nAyudo a identificar oportunidades para optimizar procesos, reducir tareas manuales y construir empresas más eficientes mediante automatización, inteligencia artificial y sistemas inteligentes.\n\nPuedo orientarte sobre:\n\n• Procesos operativos\n• Ventas y seguimiento comercial\n• Atención al cliente\n• Automatización\n• CRM y gestión empresarial\n\nCuéntame, ¿qué desafío te gustaría resolver en tu empresa?",
   },
 ]);
 
@@ -583,7 +583,7 @@ const interval = setInterval(() => {
     </h3>
 
     <p className="text-[11px] text-cyan-400">
-      Asistente by Odoo
+       Business Transformation AI
     </p>
   </div>
 
