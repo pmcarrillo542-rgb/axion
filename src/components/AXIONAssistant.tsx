@@ -95,7 +95,7 @@ useEffect(() => {
         ? 0
         : prev + 1
     );
-  }, 5000);
+  }, 15000);
 
   return () => clearInterval(interval);
 }, []);
@@ -105,6 +105,39 @@ useEffect(() => {
     behavior: "smooth",
   });
 }, [messages, typing]);
+const showTypingResponse = (response: string) => {
+  setTyping(true);
+
+  setTimeout(() => {
+    setTyping(false);
+
+    let index = 0;
+
+    setDisplayText("");
+
+    const interval = setInterval(() => {
+      index++;
+
+      setDisplayText(
+        response.slice(0, index)
+      );
+
+      if (index >= response.length) {
+        clearInterval(interval);
+
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: response,
+          },
+        ]);
+
+        setDisplayText("");
+      }
+    }, 15);
+  }, 1200);
+};
   const getResponse = (text: string) => {
   const lower = text.toLowerCase();
 
@@ -258,13 +291,95 @@ if (
   return "Odoo incluye herramientas contables para reportes financieros, registros y control administrativo.";
 }
 
+
+
+if (
+  lower.includes("seguimiento") ||
+  lower.includes("seguimientos")
+) {
+  return "Una de las causas más comunes de pérdida de oportunidades es la falta de seguimiento. AXION puede ayudarte a implementar CRM, recordatorios automáticos y procesos comerciales estructurados.";
+}
+
+if (
+  lower.includes("todo es manual") ||
+  lower.includes("procesos manuales") ||
+  lower.includes("muy manual")
+) {
+  return "Los procesos manuales generan errores, retrasos y limitan el crecimiento. AXION ayuda a automatizar tareas repetitivas para que el equipo pueda enfocarse en actividades de mayor valor.";
+}
+
+if (
+  lower.includes("no tengo control") ||
+  lower.includes("falta de control") ||
+  lower.includes("sin control")
+) {
+  return "La falta de control suele aparecer cuando la información está distribuida entre Excel, WhatsApp y procesos manuales. AXION ayuda a centralizar la operación para que cada área tenga visibilidad en tiempo real.";
+}
+
+if (
+  lower.includes("pierdo clientes") ||
+  lower.includes("perdemos clientes") ||
+  lower.includes("se me van clientes")
+) {
+  return "Cuando los clientes se pierden normalmente el problema no está en conseguir más prospectos, sino en el seguimiento. AXION ayuda a centralizar oportunidades, automatizar recordatorios y dar visibilidad completa al proceso comercial.";
+}
+
+if (
+  (lower.includes("excel") && lower.includes("whatsapp")) ||
+  lower.includes("excel y whatsapp") ||
+  lower.includes("excel + whatsapp")
+) {
+  return "Tu empresa encaja perfectamente con el perfil de organizaciones que AXION ayuda a transformar. Cuando la operación depende de Excel y WhatsApp, suele existir información dispersa, seguimiento manual y poca visibilidad. AXION ayuda a centralizar procesos, automatizar tareas y construir una operación más escalable.";
+}
+
+if (
+  lower.includes("excel") ||
+  lower.includes("hoja de calculo") ||
+  lower.includes("hojas de calculo")
+) {
+  return "Muchas empresas comienzan utilizando Excel, pero a medida que crecen suelen aparecer errores manuales, información duplicada y poca visibilidad de los procesos. AXION ayuda a transformar esos procesos en sistemas más organizados, automatizados y escalables.";
+}
+
 if (
   lower.includes("rrhh") ||
   lower.includes("recursos humanos")
 ) {
   return "Podemos automatizar procesos de recursos humanos como vacaciones, asistencia, documentos y gestion de empleados.";
 }
+if (
+  lower.includes("excel") ||
+  lower.includes("hoja de calculo") ||
+  lower.includes("hojas de calculo")
+) {
+  return "Muchas empresas comienzan utilizando Excel, pero a medida que crecen suelen aparecer errores manuales, información duplicada y poca visibilidad de los procesos. AXION ayuda a transformar esos procesos en sistemas más organizados, automatizados y escalables.";
+}
+if (
+  lower.includes("whatsapp")
+) {
+  return "Muchas empresas gestionan clientes y ventas desde WhatsApp, pero con el tiempo la información se pierde entre conversaciones. AXION puede integrar WhatsApp con CRM, automatizaciones y seguimiento comercial para que ningún prospecto se pierda.";
+}
+if (
+  lower.includes("ventas") ||
+  lower.includes("vender") ||
+  lower.includes("comercial")
+) {
+  return "AXION ayuda a organizar el proceso comercial mediante CRM, seguimiento automático de prospectos, recordatorios, embudos de ventas y dashboards para mejorar la conversión y el control del equipo.";
+}
+if (
+  lower.includes("facturacion") ||
+  lower.includes("facturación")
+) {
+  return "AXION puede ayudarte a centralizar facturación, pagos, cuentas por cobrar y procesos administrativos mediante sistemas integrados que reducen tareas manuales y errores.";
+}
+if (
+  lower.includes("manual") ||
+  lower.includes("manuales") ||
+  lower.includes("proceso manual")
+) {
+  return "Los procesos manuales suelen generar retrasos, errores y poca visibilidad. AXION ayuda a transformar esas tareas en flujos automatizados que permiten ahorrar tiempo y crecer con mayor control.";
+}
   return "Gracias por tu consulta. EVA AI está evolucionando constantemente para ofrecer respuestas más avanzadas sobre Odoo, automatización e inteligencia artificial.";
+
 };
 
  const sendQuickQuestion = (question: string) => {
@@ -352,13 +467,13 @@ const interval = setInterval(() => {
   }));
 
   setMessages((prev) => [
-    ...prev,
-    { role: "user", content: currentInput },
-    {
-      role: "assistant",
-      content: "Perfecto. ¿Como se llama tu empresa?",
-    },
-  ]);
+  ...prev,
+  { role: "user", content: currentInput },
+]);
+
+showTypingResponse(
+  "Perfecto. ¿Como se llama tu empresa?"
+);
 
   setInput("");
   setLeadStep(2);
@@ -372,14 +487,13 @@ if (leadStep === 2) {
   }));
 
   setMessages((prev) => [
-    ...prev,
-    { role: "user", content: currentInput },
-    {
-      role: "assistant",
-      content: "Excelente. ¿Cual es tu correo electronico?",
-    },
-  ]);
+  ...prev,
+  { role: "user", content: currentInput },
+]);
 
+showTypingResponse(
+  "Excelente. ¿Cual es tu correo electronico?"
+);
   setInput("");
   setLeadStep(3);
   return;
@@ -391,14 +505,14 @@ if (leadStep === 3) {
     correo: currentInput,
   }));
 
-  setMessages((prev) => [
-    ...prev,
-    { role: "user", content: currentInput },
-    {
-      role: "assistant",
-      content: "Perfecto. ¿Cual es tu numero celular?",
-    },
-  ]);
+ setMessages((prev) => [
+  ...prev,
+  { role: "user", content: currentInput },
+]);
+
+showTypingResponse(
+  "Perfecto. ¿Cual es tu numero celular?"
+);
 
   setInput("");
   setLeadStep(4);
@@ -412,20 +526,41 @@ if (leadStep === 4) {
   }));
 
   setMessages((prev) => [
-    ...prev,
-    { role: "user", content: currentInput },
-    {
-      role: "assistant",
-      content: "¿Que proceso deseas automatizar?",
-    },
-  ]);
+  ...prev,
+  { role: "user", content: currentInput },
+]);
+
+showTypingResponse(
+   "Perfecto.\n\n¿Qué herramientas utilizan actualmente para gestionar la empresa?\n\n• Excel\n• WhatsApp\n• Excel + WhatsApp\n• CRM\n• ERP\n• Otro"
+);
 
   setInput("");
   setLeadStep(5);
   return;
 }
-
 if (leadStep === 5) {
+  setLeadData((prev) => ({
+    ...prev,
+    herramientas: currentInput,
+  }));
+
+  setMessages((prev) => [
+    ...prev,
+    {
+      role: "assistant",
+      content:
+        "Perfecto.\n\n¿Qué proceso te gustaría optimizar o automatizar actualmente?",
+    },
+  ]);
+
+  setInput("");
+
+  setLeadStep(6);
+
+  return;
+}
+
+if (leadStep === 6) {
   const procesoActual = currentInput;
 
   setLeadData((prev) => ({
@@ -433,15 +568,15 @@ if (leadStep === 5) {
     proceso: procesoActual,
   }));
 
-  setMessages((prev) => [
-    ...prev,
-    { role: "user", content: currentInput },
-    {
-      role: "assistant",
-      content:
-        "Perfecto. Ya tengo toda la informacion. He completado el formulario por ti.",
-    },
-  ]);
+ setMessages((prev) => [
+  ...prev,
+  { role: "user", content: currentInput },
+]);
+
+showTypingResponse(
+  "Perfecto.\n\nYa he registrado toda tu información.\n\nNuestro equipo revisará tu caso para identificar oportunidades de automatización, control y crecimiento para tu empresa.\n\nGracias por tu tiempo.\n\nNos pondremos en contacto contigo muy pronto.\n\nBienvenido a AXION."
+);
+
 
   setInput("");
 
@@ -473,7 +608,7 @@ ${procesoActual}`;
   console.log("FORM NO ENCONTRADO");
 }
 }, 1500);
-  }, 300);
+  }, 10000);
 
   setLeadStep(0);
 
@@ -528,28 +663,39 @@ const interval = setInterval(() => {
 };
   return (
   <>
+  
+    <div className="fixed bottom-36 right-6 z-50 flex flex-col items-center">
+{!open && (
   <div
   className="
-    fixed
-    bottom-[140px]
-    right-4
-    z-[9999]
-    px-4
-    py-2
-    rounded-full
-    bg-[#071018]
-    border
-    border-cyan-500/30
-    text-white
-    text-xs
-    backdrop-blur-xl
-    shadow-[0_0_20px_rgba(34,211,238,0.15)]
+  absolute
+  -top-10
+  right-0
+
+  z-[9999]
+
+  px-4
+  py-2
+
+  whitespace-nowrap
+
+  rounded-full
+  bg-[#071018]
+
+  border
+  border-cyan-500/30
+
+  text-white
+  text-[11px]
+
+  backdrop-blur-xl
+
+  shadow-[0_0_20px_rgba(34,211,238,0.15)]
   "
 >
   {floatingMessages[floatingIndex]}
 </div>
-    <div className="fixed bottom-36 right-6 z-50 flex flex-col items-center">
-
+)}
       
 
       <button
@@ -628,14 +774,9 @@ const interval = setInterval(() => {
 
               <button
               onClick={() => {
-  setMessages((prev) => [
-    ...prev,
-    {
-      role: "assistant",
-      content:
-        "Perfecto. Para comenzar necesito algunos datos.\n\n¿Como te llamas?",
-    },
-  ]);
+  showTypingResponse(
+  "Perfecto. Para comenzar necesito algunos datos.\n\n¿Como te llamas?"
+);
 
   setLeadStep(1);
 }}
