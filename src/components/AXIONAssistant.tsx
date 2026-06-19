@@ -756,7 +756,7 @@ const interval = setInterval(() => {
 
               <button
                 onClick={() =>
-                  sendQuickQuestion("Automatizar mi empresa")
+                  sendQuickQuestion("Automatizar")
                 }
                 className="text-[11px] px-2 py-1 rounded-full bg-slate-800/80 hover:bg-cyan-600 transition-all duration-300 text-white border border-slate-700 hover:border-cyan-400"
               >
