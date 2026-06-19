@@ -528,25 +528,29 @@ const interval = setInterval(() => {
 };
   return (
   <>
+  <div
+  className="
+    fixed
+    bottom-[140px]
+    right-4
+    z-[9999]
+    px-4
+    py-2
+    rounded-full
+    bg-[#071018]
+    border
+    border-cyan-500/30
+    text-white
+    text-xs
+    backdrop-blur-xl
+    shadow-[0_0_20px_rgba(34,211,238,0.15)]
+  "
+>
+  {floatingMessages[floatingIndex]}
+</div>
     <div className="fixed bottom-36 right-6 z-50 flex flex-col items-center">
 
-      <div
-        className="
-          mb-3
-          px-4
-          py-2
-          rounded-full
-          bg-[#071018]
-          border
-          border-cyan-500/30
-          text-white
-          text-sm
-          backdrop-blur-xl
-          shadow-[0_0_20px_rgba(34,211,238,0.15)]
-        "
-      >
-        {floatingMessages[floatingIndex]}
-      </div>
+      
 
       <button
         onClick={() => setOpen(!open)}
