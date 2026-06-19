@@ -17,6 +17,15 @@ export default function AXIONAssistant() {
 const [typing, setTyping] = useState(false);
 const [displayText, setDisplayText] = useState("");
 const [leadStep, setLeadStep] = useState(0);
+const floatingMessages = [
+  "Hola",
+  "¿Tu empresa sigue usando Excel?",
+  "Descubre qué procesos automatizar",
+  "Auditoría estratégica gratuita",
+  "Construye una empresa más eficiente",
+];
+
+const [floatingIndex, setFloatingIndex] = useState(0);
 
 const [leadData, setLeadData] = useState({
   nombre: "",
@@ -79,6 +88,17 @@ ${proceso}`;
 }, 1200);
 };
 const messagesEndRef = useRef<HTMLDivElement | null>(null);
+useEffect(() => {
+  const interval = setInterval(() => {
+    setFloatingIndex((prev) =>
+      prev === floatingMessages.length - 1
+        ? 0
+        : prev + 1
+    );
+  }, 5000);
+
+  return () => clearInterval(interval);
+}, []);
 
 useEffect(() => {
   messagesEndRef.current?.scrollIntoView({
@@ -507,10 +527,30 @@ const interval = setInterval(() => {
   }, 1500);
 };
   return (
-    <>
+  <>
+    <div className="fixed bottom-36 right-6 z-50 flex flex-col items-center">
+
+      <div
+        className="
+          mb-3
+          px-4
+          py-2
+          rounded-full
+          bg-[#071018]
+          border
+          border-cyan-500/30
+          text-white
+          text-sm
+          backdrop-blur-xl
+          shadow-[0_0_20px_rgba(34,211,238,0.15)]
+        "
+      >
+        {floatingMessages[floatingIndex]}
+      </div>
+
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-36 right-6 z-50 eva-float group"
+        className="eva-float group"
       >
         <div className="relative flex items-center justify-center w-20 h-20 rounded-full">
 
@@ -657,7 +697,10 @@ const interval = setInterval(() => {
             </button>
           </div>
         </div>
-      )}
+       )}
+
+    </div>
+
     </>
   );
 }
