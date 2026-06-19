@@ -140,7 +140,13 @@ const showTypingResponse = (response: string) => {
 };
   const getResponse = (text: string) => {
   const lower = text.toLowerCase();
-
+if (
+  lower.includes("automatizar") ||
+  lower.includes("automatización") ||
+  lower.includes("automatizaciones")
+) {
+  return "La automatización permite eliminar tareas manuales repetitivas, reducir errores y conectar procesos en un solo flujo de trabajo. AXION ayuda a empresas que utilizan Excel, WhatsApp y procesos dispersos a implementar sistemas que ahorran tiempo, mejoran el control y permiten crecer de forma más escalable.";
+}
   if (lower.includes("odoo")) {
     return "Odoo es una plataforma ERP que integra CRM, ventas, inventario, facturación, proyectos y automatización en un solo sistema.";
   }
